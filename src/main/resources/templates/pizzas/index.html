@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{pizzas/fragments :: resources}">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,6 +8,30 @@
     <title>Document</title>
 </head>
 <body>
+
+<h1 class="text-center mb-5">Le nostre pizze</h1>
+
+<!--TABLE-->
+<div class="container py-4">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Prezzo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pizza : ${allPizza}" th:object="${pizza}">
+            <th th:text="*{name}"></th>
+            <td th:text="*{description}"></td>
+            <td th:text="|*{price} €|"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--/ TABLE-->
 
 </body>
 </html>
