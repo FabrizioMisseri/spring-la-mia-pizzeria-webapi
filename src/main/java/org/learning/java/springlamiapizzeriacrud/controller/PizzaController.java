@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -22,9 +24,24 @@ public class PizzaController {
     private PizzaRpository pizzaRpository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, @RequestParam(name = "q") Optional<String> keyword) {
 
-        List<Pizza> pizzas = pizzaRpository.findAll();
+//        List<Book> books;
+//        if (keyword.isEmpty()) {
+//            books = bookRepository.findAll(Sort.by("title"));
+//        } else {
+//            books = bookRepository.findByTitleContainingIgnoreCase(keyword.get());
+//            model.addAttribute("keyword", keyword.get());
+//        }
+//        model.addAttribute("list", books);
+
+        List<Pizza> pizzas;
+        if (keyword.isEmpty()) {
+            pizzas = pizzaRpository.findAll();
+        } else {
+            pizzas = pizzaRpository.findByNameContainingIgnoreCase(keyword.get());
+            model.addAttribute("keyword", keyword.get());
+        }
         model.addAttribute("allPizza", pizzas);
         return "/pizzas/index";
     }

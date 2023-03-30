@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{pizzas/fragments :: resources}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<th:block th:replace="pizzas/fragments :: navbar('pizza', ${keyword}, true)"></th:block>
 
 <h3>PIZZA: [[${pizza.name}]]</h3>
 <p>descrizione: [[${pizza.description}]]</p>

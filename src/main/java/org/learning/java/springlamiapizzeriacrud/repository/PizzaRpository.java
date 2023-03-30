@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface PizzaRpository extends JpaRepository<Pizza, Integer> {
 
-    public List<String> findByNameContainingIgnoreCase(String name);
+    public List<Pizza> findByNameContainingIgnoreCase(String name);
 
 }

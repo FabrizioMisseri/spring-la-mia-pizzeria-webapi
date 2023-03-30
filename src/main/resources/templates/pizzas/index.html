@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+<th:block th:replace="pizzas/fragments :: navbar('pizzas', ${keyword}, true)"></th:block>
 
 <h1 class="text-center mb-5">Le nostre pizze</h1>
 
@@ -43,5 +44,6 @@
 </div>
 <!--/ else PIZZE-->
 
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
