@@ -20,6 +20,7 @@
             <th scope="col">Nome</th>
             <th scope="col">Descrizione</th>
             <th scope="col">Prezzo</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,9 @@
             <th th:text="*{name}"></th>
             <td th:text="*{description}"></td>
             <td th:text="|*{price} €|"></td>
+            <td>
+                <a th:href="@{|/pizzas/*{id}|}" class="btn btn-primary">vai a ...</a>
+            </td>
         </tr>
         </tbody>
     </table>
