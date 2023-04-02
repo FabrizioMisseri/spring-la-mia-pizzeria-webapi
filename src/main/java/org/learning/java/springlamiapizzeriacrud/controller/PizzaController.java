@@ -61,7 +61,12 @@ public class PizzaController {
     @PostMapping("/create")
     public String store(@ModelAttribute Pizza formPizza) {
 
-        pizzaRpository.save(formPizza);
+        Pizza pizzaToPersist = new Pizza();
+        pizzaToPersist.setName(formPizza.getName());
+        pizzaToPersist.setDescription(formPizza.getDescription());
+        pizzaToPersist.setPrice(formPizza.getPrice());
+        pizzaRpository.save(pizzaToPersist);
+
         return "redirect:/pizzas";
     }
 
