@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<th:block th:replace="pizzas/fragments :: navbar('pizza', ${keyword}, true)"></th:block>
+<th:block th:replace="pizzas/fragments :: navbar('pizza', ${keyword}, false)"></th:block>
 
 <h3>PIZZA: [[${pizza.name}]]</h3>
 <p>descrizione: [[${pizza.description}]]</p>

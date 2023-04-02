@@ -11,10 +11,21 @@
 <body>
 <th:block th:replace="pizzas/fragments :: navbar('pizzas', ${keyword}, true)"></th:block>
 
-<h1 class="text-center mb-5">Le nostre pizze</h1>
 
 <!--TABLE-->
 <div class="container py-4" th:if="${allPizza.size() >= 0}">
+
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Le nostre pizze</h1>
+        </div>
+        <!--&lt;!&ndashBTN-->
+        <div class="col text-end">
+            <a th:href="@{/pizzas/create}" class="btn btn-primary">
+                ADDpizza
+            </a>
+        </div>
+    </div>
 
     <table class="table">
         <thead>

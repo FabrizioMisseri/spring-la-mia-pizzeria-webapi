@@ -17,6 +17,7 @@ public class Pizza {
     @Column(nullable = false)
     private Double price;
 
+    @Column(nullable = false)
     private String description;
 
 
