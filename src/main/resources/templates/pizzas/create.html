@@ -12,10 +12,10 @@
     <form id="pizza-form" method="post" th:object="${pizza}" th:action="@{/pizzas/create}"
           class="row gy-3">
         <!-- errors -->
-        <!--        <ul>-->
-        <!--            <li th:each="err : ${#fields.globalErrors() }" th:text="${err}"></li>-->
-        <!--        </ul>-->
-        <!-- title -->
+        <ul>
+            <li class="text-danger" th:each="err : ${#fields.allErrors() }" th:text="${err}"></li>
+        </ul>
+        <!-- name -->
         <div class="col-12">
             <label class="form-label" for="name">Nome*</label>
             <input type="text" id="name" class="form-control" th:field="*{name}"

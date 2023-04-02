@@ -1,12 +1,14 @@
 package org.learning.java.springlamiapizzeriacrud.controller;
 
 
+import jakarta.validation.Valid;
 import org.learning.java.springlamiapizzeriacrud.model.Pizza;
 import org.learning.java.springlamiapizzeriacrud.repository.PizzaRpository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -51,6 +53,7 @@ public class PizzaController {
         return "/pizzas/show";
     }
 
+    // CREATE
     @GetMapping("/create")
     public String create(Model model) {
 
@@ -58,9 +61,14 @@ public class PizzaController {
         return "/pizzas/create";
     }
 
+    // STORE
     @PostMapping("/create")
-    public String store(@ModelAttribute Pizza formPizza) {
+    public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 
+        if (bindingResult.hasErrors()) {
+
+            return "/pizzas/create";
+        }
         Pizza pizzaToPersist = new Pizza();
         pizzaToPersist.setName(formPizza.getName());
         pizzaToPersist.setDescription(formPizza.getDescription());
