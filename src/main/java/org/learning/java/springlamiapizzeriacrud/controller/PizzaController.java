@@ -59,8 +59,9 @@ public class PizzaController {
     }
 
     @PostMapping("/create")
-    public String store() {
+    public String store(@ModelAttribute Pizza formPizza) {
 
+        pizzaRpository.save(formPizza);
         return "redirect:/pizzas";
     }
 
