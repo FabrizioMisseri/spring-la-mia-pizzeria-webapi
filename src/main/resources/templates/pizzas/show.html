@@ -7,9 +7,11 @@
 <body>
 <th:block th:replace="pizzas/fragments :: navbar('pizza', ${keyword}, false)"></th:block>
 
-<h3>PIZZA: [[${pizza.name}]]</h3>
-<p>descrizione: [[${pizza.description}]]</p>
-<p>prezzo: [[${pizza.price}]]€</p>
+<div class="container">
+    <h3 class="mb-4">PIZZA: [[${pizza.name}]]</h3>
+    <p>descrizione: [[${pizza.description}]]</p>
+    <p>prezzo: [[${pizza.price}]]€</p>
+</div>
 
 </body>
 </html>
