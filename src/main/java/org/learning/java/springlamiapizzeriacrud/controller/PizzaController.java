@@ -20,8 +20,8 @@ import java.util.Optional;
 @RequestMapping("/pizzas")
 public class PizzaController {
 
-    @Autowired
-    private PizzaRpository pizzaRpository;
+//    @Autowired
+//    private PizzaRpository pizzaRpository;
 
     @Autowired
     private PizzaService pizzaService;
@@ -67,7 +67,7 @@ public class PizzaController {
             model.addAttribute("pizza", pizza);
             return "/pizzas/show";
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
