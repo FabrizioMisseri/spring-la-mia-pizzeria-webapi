@@ -40,13 +40,21 @@ public class PizzaService {
         }
     }
 
-//    public boolean deleteById(Integer id) {
-//        pizzaRpository.findById(id).orElseThrow(() -> new RuntimeException());
-//        try {
-//            pizzaRpository.deleteById(id);
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
+    public Pizza update(Integer id, Pizza formPizza) {
+        Pizza pizzaToUpdate = getById(id);
+        pizzaToUpdate.setName(formPizza.getName());
+        pizzaToUpdate.setDescription(formPizza.getDescription());
+        pizzaToUpdate.setPrice(formPizza.getPrice());
+        return pizzaRpository.save(pizzaToUpdate);
+    }
+
+    public boolean deleteById(Integer id) {
+        pizzaRpository.findById(id).orElseThrow(() -> new RuntimeException());
+        try {
+            pizzaRpository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

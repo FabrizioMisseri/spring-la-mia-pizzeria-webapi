@@ -95,8 +95,8 @@ public class PizzaController {
 //        return "redirect:/pizzas";
 //    }
     @PostMapping("/create")
-    public String doCreate(@Valid @ModelAttribute("pizza") Pizza formPizza,
-                           BindingResult bindingResult, Model model) {
+    public String doStore(@Valid @ModelAttribute("pizza") Pizza formPizza,
+                          BindingResult bindingResult, Model model) {
         // VALIDATION
         if (bindingResult.hasErrors()) {
             // ritorno alla view con il form
@@ -105,6 +105,45 @@ public class PizzaController {
         // se non ci sono errori procedo con la persistenza
         pizzaService.createPizza(formPizza);
         return "redirect:/pizzas";
+    }
+
+    // EDIT
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        try {
+            Pizza pizza = pizzaService.getById(id);
+            model.addAttribute("pizza", pizza);
+            return "/pizzas/edit";
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // UPDATE
+    @PostMapping("/edit/{id}")
+    public String doUpdate(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza formPizza,
+                           BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "redirect:/pizzas";
+//        }
+        //Pizza updatedPizza =
+        pizzaService.update(id, formPizza);
+        return "redirect:/pizzas/{id}";
+    }
+
+    // DELETE
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        try {
+            boolean success = pizzaService.deleteById(id);
+            if (success) {
+                return "redirect:/pizzas";
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
