@@ -4,9 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import jdk.jfr.Name;
 
+import java.util.List;
+
 @Entity
 @Table(name = "pizzas")
 public class Pizza {
+
+    @OneToMany(mappedBy = "pizza")
+    private List<SpecialOffer> specialOffers;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
