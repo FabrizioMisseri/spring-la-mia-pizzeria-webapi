@@ -67,4 +67,15 @@ public class Pizza {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    //
+    //
+    public List<SpecialOffer> getSpecialOffers() {
+        return specialOffers;
+    }
+
+    public void setSpecialOffers(List<SpecialOffer> specialOffers) {
+        this.specialOffers = specialOffers;
+    }
+
 }

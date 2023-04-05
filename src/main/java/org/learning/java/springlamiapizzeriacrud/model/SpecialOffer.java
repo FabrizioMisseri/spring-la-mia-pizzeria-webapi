@@ -3,6 +3,7 @@ package org.learning.java.springlamiapizzeriacrud.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "special_offers")
@@ -57,4 +58,6 @@ public class SpecialOffer {
     public void setPizza(Pizza pizza) {
         this.pizza = pizza;
     }
+
+
 }
