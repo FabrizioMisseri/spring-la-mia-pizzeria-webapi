@@ -1,5 +1,6 @@
 package org.learning.java.springlamiapizzeriacrud.controller;
 
+import jakarta.validation.Valid;
 import org.learning.java.springlamiapizzeriacrud.model.Pizza;
 import org.learning.java.springlamiapizzeriacrud.model.SpecialOffer;
 import org.learning.java.springlamiapizzeriacrud.service.PizzaService;
@@ -7,9 +8,8 @@ import org.learning.java.springlamiapizzeriacrud.service.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -38,5 +38,14 @@ public class SpecialOfferController {
         return "/special-offer/create";
     }
 
+    @PostMapping("/create")
+    public String doCreate(@Valid @ModelAttribute SpecialOffer formSpecialOffer,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/special-offer/create";
+        }
+        SpecialOffer createdSpecialOffer = specialOfferService.create(formSpecialOffer);
+        return "redirect:/pizzas/";
+    }
 
 }
