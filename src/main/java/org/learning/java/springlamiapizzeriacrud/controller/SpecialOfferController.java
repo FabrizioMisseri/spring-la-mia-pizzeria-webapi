@@ -26,14 +26,12 @@ public class SpecialOfferController {
 
 
     @GetMapping("/create")
-    public String create(@RequestParam(name = "pizzaId") Optional<Integer> id, Model model) {
+    public String create(@RequestParam(name = "pizzaId") Integer id, Model model) {
         SpecialOffer specialOffer = new SpecialOffer();
         specialOffer.setStartingDate(LocalDate.now());
         specialOffer.setEndingDate(LocalDate.now().plusMonths(1));
-        if (id.isPresent()) {
-            Pizza pizza = pizzaService.getById(id.get());
-            specialOffer.setPizza(pizza);
-        }
+        Pizza pizza = pizzaService.getById(id);
+        specialOffer.setPizza(pizza);
         model.addAttribute("specialOffer", specialOffer);
         return "/special-offer/create";
     }
@@ -45,7 +43,7 @@ public class SpecialOfferController {
             return "/special-offer/create";
         }
         SpecialOffer createdSpecialOffer = specialOfferService.create(formSpecialOffer);
-        return "redirect:/pizzas/";
+        return "redirect:/pizzas";
     }
 
 }

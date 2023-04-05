@@ -11,6 +11,34 @@
     <h3 class="mb-4">PIZZA: [[${pizza.name}]]</h3>
     <p>descrizione: [[${pizza.description}]]</p>
     <p>prezzo: [[${pizza.price}]]€</p>
+
+    <!--Special offers-->
+    <div class="mt-2">
+        <a class="btn btn-primary" th:href="@{/special-offer/create(pizzaId=${pizza.id})}">
+            <i class="fa-solid fa-plus"></i> Aggiungi un'offerta
+        </a>
+        <div class="mt-4">
+            <h6>Le offerte</h6>
+            <table class="table" th:object="${pizza}">
+                <thead>
+                <tr>
+                    <th scope="col">Titolo dello sconto</th>
+                    <th scope="col">Data inizio</th>
+                    <th scope="col">Data fine</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="offer : *{specialOffers}">
+                    <td th:text="${offer.title}"></td>
+                    <td th:text="${#temporals.format(offer.startingDate, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#temporals.format(offer.endingDate, 'dd/MM/yyyy')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Special offers-->
+
 </div>
 
 </body>
