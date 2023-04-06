@@ -20,6 +20,7 @@ public class PizzaService {
         pizzaToPersist.setName(formPizza.getName());
         pizzaToPersist.setDescription(formPizza.getDescription());
         pizzaToPersist.setPrice(formPizza.getPrice());
+        pizzaToPersist.setIngredients(formPizza.getIngredients());
         return pizzaRpository.save(pizzaToPersist);
     }
 
@@ -45,6 +46,7 @@ public class PizzaService {
         pizzaToUpdate.setName(formPizza.getName());
         pizzaToUpdate.setDescription(formPizza.getDescription());
         pizzaToUpdate.setPrice(formPizza.getPrice());
+        pizzaToUpdate.setIngredients(formPizza.getIngredients());
         return pizzaRpository.save(pizzaToUpdate);
     }
 

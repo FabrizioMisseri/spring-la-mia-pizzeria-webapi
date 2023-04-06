@@ -12,8 +12,16 @@
     <p>descrizione: [[${pizza.description}]]</p>
     <p>prezzo: [[${pizza.price}]]€</p>
 
+    <!--Ingredients-->
+    <div>
+        <h6>INGREDIENTI:</h6>
+        <ul style="list-style: none">
+            <li th:each="ingredient : ${pizza.ingredients}" th:text="${ingredient.name}"></li>
+        </ul>
+    </div>
+
     <!--Special offers-->
-    <div class="mt-2">
+    <div class="mt-5">
         <a class="btn btn-primary" th:href="@{/special-offer/create(pizzaId=${pizza.id})}">
             <i class="fa-solid fa-plus"></i> Aggiungi un'offerta
         </a>
