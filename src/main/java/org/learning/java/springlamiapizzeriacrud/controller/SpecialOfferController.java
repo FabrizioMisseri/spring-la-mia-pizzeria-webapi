@@ -59,9 +59,8 @@ public class SpecialOfferController {
         if (bindingResult.hasErrors()) {
             return "redirect:/pizzas";
         }
-        //Pizza updatedPizza =
-        specialOfferService.update(id, formSpecialOffer);
-        return "redirect:/pizzas";
+        SpecialOffer updatedSO = specialOfferService.update(id, formSpecialOffer);
+        return "redirect:/pizzas/" + updatedSO.getPizza().getId();
     }
 
 }
