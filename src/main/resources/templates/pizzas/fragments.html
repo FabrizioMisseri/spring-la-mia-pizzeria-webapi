@@ -34,8 +34,16 @@
                        th:classAppend="${current == 'pizzas'} ? active : not-active">Pizzas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/pizzas}"
+                    <a class="nav-link" href=""
                        th:classAppend="${current == 'pizza'} ? active : not-active">Pizza</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/ingredients}"
+                       th:classAppend="${current == 'ingredients'} ? active : not-active">Ingredients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=""
+                       th:classAppend="${current == 'ingredient'} ? active : not-active">Ingredient</a>
                 </li>
             </ul>
             <form
