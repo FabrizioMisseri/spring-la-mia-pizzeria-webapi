@@ -46,4 +46,22 @@ public class SpecialOfferController {
         return "redirect:/pizzas";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        SpecialOffer specialOffer = specialOfferService.getById(id);
+        model.addAttribute("specialOffer", specialOffer);
+        return "/special-offer/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String doUpdate(@PathVariable Integer id, @Valid @ModelAttribute("specialOffer")
+    SpecialOffer formSpecialOffer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/pizzas";
+        }
+        //Pizza updatedPizza =
+        specialOfferService.update(id, formSpecialOffer);
+        return "redirect:/pizzas";
+    }
+
 }
