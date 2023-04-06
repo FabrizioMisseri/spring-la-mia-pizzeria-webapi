@@ -2,8 +2,10 @@ package org.learning.java.springlamiapizzeriacrud.controller;
 
 
 import jakarta.validation.Valid;
+import org.learning.java.springlamiapizzeriacrud.model.Ingredient;
 import org.learning.java.springlamiapizzeriacrud.model.Pizza;
 import org.learning.java.springlamiapizzeriacrud.repository.PizzaRpository;
+import org.learning.java.springlamiapizzeriacrud.service.IngredientService;
 import org.learning.java.springlamiapizzeriacrud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaService pizzaService;
+
+    @Autowired
+    IngredientService ingredientService;
 
     //    @GetMapping
 //    public String index(Model model, @RequestParam(name = "q") Optional<String> keyword) {
@@ -75,6 +80,10 @@ public class PizzaController {
     // CREATE
     @GetMapping("/create")
     public String create(Model model) {
+        //
+        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        model.addAttribute("allIngredients", ingredients);
+        //
         model.addAttribute("pizza", new Pizza());
         return "/pizzas/create";
     }
@@ -113,6 +122,10 @@ public class PizzaController {
     public String edit(@PathVariable Integer id, Model model) {
         try {
             Pizza pizza = pizzaService.getById(id);
+            //
+            List<Ingredient> ingredients = ingredientService.getAllIngredients();
+            model.addAttribute("allIngredients", ingredients);
+            //
             model.addAttribute("pizza", pizza);
             return "/pizzas/edit";
         } catch (Exception e) {
