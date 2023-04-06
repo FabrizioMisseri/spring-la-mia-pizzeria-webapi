@@ -2,16 +2,23 @@ package org.learning.java.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import jdk.jfr.Name;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "pizzas")
 public class Pizza {
 
-    @OneToMany(mappedBy = "pizza")
+    @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL)
     private List<SpecialOffer> specialOffers;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pizza_ingredient",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredients;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,4 +85,11 @@ public class Pizza {
         this.specialOffers = specialOffers;
     }
 
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 }
