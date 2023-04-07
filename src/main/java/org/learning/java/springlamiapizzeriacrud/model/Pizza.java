@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -93,5 +94,18 @@ public class Pizza {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pizza pizza = (Pizza) o;
+        return Objects.equals(getSpecialOffers(), pizza.getSpecialOffers()) && Objects.equals(getIngredients(), pizza.getIngredients()) && Objects.equals(getId(), pizza.getId()) && Objects.equals(getName(), pizza.getName()) && Objects.equals(getPrice(), pizza.getPrice()) && Objects.equals(getDescription(), pizza.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSpecialOffers(), getIngredients(), getId(), getName(), getPrice(), getDescription());
     }
 }
