@@ -23,23 +23,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers("/ingredients", "/ingredients/create", "/ingredients/update/**", "/ingredients/delete/**").hasAuthority("ADMIN")
-                .requestMatchers("/special-offer/create", "special-offer/edit/**", "special-offer/delete/**").hasAuthority("ADMIN")
-                .requestMatchers("/pizzas/create", "/pizzas/edit/**", "/pizzas/delete/**").hasAuthority("ADMIN")
-                .requestMatchers("/special-offer", "/special-offer/**").hasAuthority("ADMIN")
-                .requestMatchers("/pizzas", "/pizzas/**").hasAnyAuthority("ADMIN", "USER")
-                .requestMatchers(HttpMethod.POST, "/pizzas/**").hasAuthority("ADMIN")
-                .requestMatchers("/**").permitAll()
-                .and().formLogin()
-                .and().logout()
-                .and().exceptionHandling();
-        return http.build();
-    }
-
-
+    // PROVIDER
     @Bean
     DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -48,5 +32,22 @@ public class SecurityConfiguration {
         return authProvider;
     }
 
+
+    // AUTHENTICATION FILTER
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .requestMatchers("/ingredients", "/ingredients/**").hasAuthority("ADMIN")
+                .requestMatchers("/special-offer/**").hasAuthority("ADMIN")
+                .requestMatchers("/pizzas/create", "/pizzas/edit/**", "/pizzas/delete/**").hasAuthority("ADMIN")
+                .requestMatchers("/", "/pizzas", "/pizzas/**").hasAnyAuthority("ADMIN", "USER")
+                .requestMatchers(HttpMethod.POST, "/pizzas/**").hasAuthority("ADMIN")
+                // PERMIT-ALL è a tutte le altre intercettate, tanto vede prima quelle sopra
+                .requestMatchers("/**").permitAll()
+                .and().formLogin()
+                .and().logout()
+                .and().exceptionHandling();
+        return http.build();
+    }
 
 }
