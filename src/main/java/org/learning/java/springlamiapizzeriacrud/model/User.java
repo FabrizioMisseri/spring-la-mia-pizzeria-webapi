@@ -1,9 +1,6 @@
 package org.learning.java.springlamiapizzeriacrud.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
@@ -14,7 +11,7 @@ public class User {
 
     @Id
     private Integer id;
-    @NotNull
+    @Column(nullable = false, unique = true)
     private String username;
     @NotNull
     private String password;

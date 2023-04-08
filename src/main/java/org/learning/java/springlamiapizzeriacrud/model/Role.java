@@ -1,5 +1,6 @@
 package org.learning.java.springlamiapizzeriacrud.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +10,7 @@ public class Role {
 
     @Id
     private Integer id;
-    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
 
     public Integer getId() {
