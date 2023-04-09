@@ -43,7 +43,8 @@
                     <td th:text="${#temporals.format(offer.startingDate, 'dd/MM/yyyy')}"></td>
                     <td th:text="${#temporals.format(offer.endingDate, 'dd/MM/yyyy')}"></td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{|/special-offer/edit/${offer.id}|}">
+                        <a class="btn btn-primary" th:href="@{|/special-offer/edit/${offer.id}|}"
+                           sec:authorize="hasAuthority('ADMIN')">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </td>
