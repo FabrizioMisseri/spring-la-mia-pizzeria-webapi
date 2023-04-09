@@ -1,1 +1,0 @@
-INSERT INTO `ingredients` (`id`, `name`) VALUES (NULL, 'olio'), (NULL, 'pomodoro');

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:insert="~{pizzas/fragments :: resources}">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -23,7 +24,8 @@
         </div>
         <!--&lt;!&ndashBTN-->
         <div class="col text-end">
-            <a th:href="@{/pizzas/create}" class="btn btn-primary px-4">
+            <a th:href="@{/pizzas/create}" class="btn btn-primary px-4"
+               sec:authorize="hasAuthority('ADMIN')">
                 <i class="fa-solid fa-plus"></i>
                 <i class="fa-solid fa-pizza-slice"></i>
             </a>
@@ -48,10 +50,12 @@
                 <a th:href="@{|/pizzas/*{id}|}" class="btn btn-primary">
                     <i class="fa-solid fa-expand"></i>
                 </a>
-                <a th:href="@{|/pizzas/edit/*{id}|}" class="btn btn-primary">
+                <a th:href="@{|/pizzas/edit/*{id}|}" class="btn btn-primary"
+                   sec:authorize="hasAuthority('ADMIN')">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a th:href="@{|/pizzas/delete/*{id}|}" class="btn btn-primary">
+                <a th:href="@{|/pizzas/delete/*{id}|}" class="btn btn-primary"
+                   sec:authorize="hasAuthority('ADMIN')">
                     <i class="fa-solid fa-delete-left"></i>
                 </a>
             </td>

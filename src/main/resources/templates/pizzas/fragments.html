@@ -58,6 +58,10 @@
                 <button class="btn btn-outline-light" type="submit"><i
                         class="fa-solid fa-magnifying-glass"></i></button>
             </form>
+            <div class="ms-5 text-light">
+                <span sec:authentication="name"></span>
+                <a class="btn btn-info" th:href="@{/logout}">Logout</a>
+            </div>
         </div>
     </div>
 </nav>
