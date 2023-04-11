@@ -1,5 +1,6 @@
 package org.learning.java.springlamiapizzeriacrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -11,9 +12,11 @@ import java.util.Set;
 @Table(name = "pizzas")
 public class Pizza {
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL)
     private List<SpecialOffer> specialOffers;
 
+    //@JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "pizza_ingredient",
